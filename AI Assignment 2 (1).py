@@ -3,15 +3,19 @@ row = [-1, -1, -1, 0, 0, 1, 1, 1]
 col = [-1, 0, 1, -1, 1, -1, 0, 1]
 
 
-# check if it is possible to go to pixel (x, y) from the
-# current pixel. The function returns false if the pixel
-# has a different color, or it's not a valid pixel
 def isSafe(mat, x, y, target):
+    """
+    Check if it is possible to go to pixel (x, y) from the current pixel.
+    Returns False if the pixel has a different color, or it's not a valid pixel.
+    """
     return 0 <= x < len(mat) and 0 <= y < len(mat[0]) and mat[x][y] == target
 
 
-# Flood fill using BFS
 def floodfill(mat, x, y, replacement):
+    """
+    Flood fill using Breadth-First Search (BFS).
+    Replaces the target color with that of the replacement.
+    """
     # creating an empty queue and enqueue starting pixel
     queue = []
     queue.append((x, y))
@@ -29,7 +33,8 @@ def floodfill(mat, x, y, replacement):
                 queue.append((x + row[k], y + col[k]))
 
 
-if __name__ == '__main__':
+def main():
+    """Main execution of the flood fill algorithm."""
     # matrix showing portion of the screen having different colors
     mat = [
         ['Y', 'Y', 'Y', 'G', 'G', 'G', 'G', 'G', 'G', 'G'],
@@ -50,10 +55,16 @@ if __name__ == '__main__':
     # replacement color
     replacement = 'C'
 
-    # replace the target color with a replacement color using BFS
-
-    floodfill(mat, x, y, replacement)
-
-    # print the colors after replacement
+    print("Before Flood Fill:")
     for r in mat:
         print(r)
+
+    # replace the target color with a replacement color using BFS
+    floodfill(mat, x, y, replacement)
+
+    print("\nAfter Flood Fill:")
+    for r in mat:
+        print(r)
+
+if __name__ == '__main__':
+    main()

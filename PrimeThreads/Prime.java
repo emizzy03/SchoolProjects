@@ -132,7 +132,7 @@ class Worker implements Runnable {
 
 	@Override
 	public void run() {
-		threadId = Thread.currentThread().threadId();
+		threadId = Thread.currentThread().getId();
 		System.out.printf("Thread [%03d] created\n", threadId);
 		result = computeTotal(start, end);
 	}

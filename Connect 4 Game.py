@@ -40,8 +40,11 @@ player = 'O'
 bot = 'X'
 
 
-# function to print the board with 6 rows and 7 columns
 def printBoard(board):
+    """
+    Print the board with 6 rows and 7 columns.
+    Colors the Player's pieces green and the Bot's pieces yellow.
+    """
     winner_color = None
     # Determine the winner's color
     if chkMarkForWin(player):
@@ -71,12 +74,8 @@ def printBoard(board):
     print("\n")
 
 
-printBoard(board)
-
-# function to check is a certain position in the board is empty.
-
-
 def spaceIsFree(row, col):
+    """Check if a certain position in the board is empty."""
     return board[row][col] == ' '
 
 # method to insert letter in space
@@ -220,18 +219,33 @@ def ValidRow(board, col):
     return None
 
 
-# main game play
-while True:
-    playerMove()
-    if chkMarkForWin(player):
-        print('Player wins!')
-        break
-    if chkDraw():
-        print('It is a draw!')
-        break
-    compMove()
-    if chkMarkForWin(bot):
-        print('Bot wins!')
-        break
-    if chkDraw():
-        print('It is a draw!')
+def main():
+    """Main game play loop."""
+    print("Welcome to Connect 4!")
+    printBoard(board)
+    while True:
+        try:
+            playerMove()
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+            continue
+            
+        if chkMarkForWin(player):
+            print('Player wins!')
+            break
+        if chkDraw():
+            print('It is a draw!')
+            break
+            
+        print("Bot is thinking...")
+        compMove()
+        
+        if chkMarkForWin(bot):
+            print('Bot wins!')
+            break
+        if chkDraw():
+            print('It is a draw!')
+            break
+
+if __name__ == '__main__':
+    main()
